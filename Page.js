@@ -2,7 +2,7 @@ import Component from "./Component.js";
 
 class Page extends Component {
   constructor() {
-    super("body", className, tag);
+    super("body", "pokemon-webpage", "div");
     this.addHeader();
     this.addSection();
     this.addFooter();
