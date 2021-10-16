@@ -5,7 +5,7 @@ class Component {
   tag;
   constructor(parentNode, className, tag) {
     this.element = document.createElement(tag);
-    this.parentNode = parentNode;
+    this.parentNode = document.querySelector(parentNode);
     this.element.className = className;
     this.parentNode.append(this.element);
   }
