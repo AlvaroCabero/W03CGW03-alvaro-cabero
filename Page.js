@@ -4,8 +4,8 @@ import Pokemon from "./Pokemon.js";
 class Page extends Component {
   urlPokeAPI;
   pokemonList;
-  constructor() {
-    super("body", "pokemon-webpage", "div");
+  constructor(parentNode) {
+    super(parentNode, "pokemon-webpage", "div");
     this.urlPokeAPI = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10";
     this.addHeader();
     this.addSection();
@@ -15,7 +15,7 @@ class Page extends Component {
   addHeader() {
     const header = `<div class="title">
     <h1 class="main-title">POKEMON</h1>
-    <img src="https://i0.wp.com/www.citricmagazine.com/wp-content/uploads/2016/08/pokemon-go-1574003_960_720.png?fit=821%2C720&ssl=1&w=640" alt="pokemon silhouette" className="title__img" />
+    <img src="./img/image.png" alt="pokemon silhouette" className="title__img" />
     </div>`;
     document.querySelector("header").innerHTML = header;
   }
@@ -30,7 +30,11 @@ class Page extends Component {
       const pokemonService = new PokemonServices(this.urlPokeAPI);
       const pokemonData = await pokemonService.getPokemon();
       this.pokemonList = pokemonData.results;
-      this.pokemonList.map((pokemon) => new Pokemon(ulTag, pokemon.url));
+      console.log("Results Pokemon Data: " + pokemonData.results);
+      this.pokemonList.map(
+        (pokemon) =>
+          new Pokemon(document.querySelector(".main__container"), pokemon.url)
+      );
     })();
   }
   addFooter() {
