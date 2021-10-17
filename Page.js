@@ -1,8 +1,12 @@
 import Component from "./Component.js";
-
+import PokemonServices from "./PokemonServices.js";
+import Pokemon from "./Pokemon.js";
 class Page extends Component {
+  urlPokeAPI;
+  pokemonList;
   constructor() {
     super("body", "pokemon-webpage", "div");
+    this.urlPokeAPI = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10";
     this.addHeader();
     this.addSection();
     this.addFooter();
@@ -19,7 +23,15 @@ class Page extends Component {
     const section = `<section className="main__container">
     <ul className="main__pokemon-list"></ul>
 </section>`;
+
     document.querySelector("main").innerHTML = section;
+
+    (async () => {
+      const pokemonService = new PokemonServices(this.urlPokeAPI);
+      const pokemonData = await pokemonService.getPokemon();
+      this.pokemonList = pokemonData.results;
+      this.pokemonList.map((pokemon) => new Pokemon(ulTag, pokemon.url));
+    })();
   }
   addFooter() {
     const footer = `<div class="footer__container">

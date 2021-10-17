@@ -2,7 +2,7 @@ import Component from "./Component.js";
 import Page from "./Page.js";
 import PokemonServices from "./PokemonServices.js";
 class Pokemon extends Component {
-  urlPokeAPI;
+  urlPokemon;
   pokemon;
   name;
   img;
@@ -10,13 +10,13 @@ class Pokemon extends Component {
   types;
   constructor(parentElement) {
     super(parentElement, "main__pokemon-list", "li");
-    this.urlPokeAPI = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10";
-    this.getPokemons();
+    this.urlPokemon = "https://pokeapi.co/api/v2/pokemon/ditto";
+    
     this.printPokemon();
   }
 
-  (async getPokemons() {
-    const pokemonService = new PokemonServices(this.urlPokeAPI);
+  (async () => {
+    const pokemonService = new PokemonServices(this.urlPokemon);
     const pokemonData = await pokemonService.getPokemon();
     this.pokemon = pokemonData;
     this.name = pokemonData.name;
@@ -27,4 +27,28 @@ class Pokemon extends Component {
       );
     })();
 
-printpokemon
+printPokemon(){
+
+    const pokemonPrinted = `<div class="pokemon-title">
+    <p class="pokemon__name">${this.name}</p></div>
+                  <img
+                src="${this.img}"
+                alt="${this.name}"
+                class="pokemon__img"
+              />
+              <p class="pokemon__number">#${this.id}</p>
+              
+              <ul class="pokemon__types">
+              ${
+                this.types.length < 2
+                  ? `<li class="pokemon__type">${this.types[0]}</li>`
+                  : `<li class="pokemon__type">${this.types[0]}</li>
+                <li class="pokemon__type">${this.types[1]}</li>`
+              }
+              </ul>
+              
+    `;
+
+    document.querySelector("main__pokemon-list").innerHTML = pokemonPrinted;
+}
+}
