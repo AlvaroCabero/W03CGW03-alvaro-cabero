@@ -11,11 +11,11 @@ class Pokemon extends Component {
   constructor(parentElement) {
     super(parentElement, "main__pokemon-list", "li");
     this.urlPokemon = "https://pokeapi.co/api/v2/pokemon/ditto";
-    this.getPokemons();
+    
     this.printPokemon();
   }
 
-  (async getPokemons() {
+  (async () => {
     const pokemonService = new PokemonServices(this.urlPokemon);
     const pokemonData = await pokemonService.getPokemon();
     this.pokemon = pokemonData;
@@ -29,4 +29,26 @@ class Pokemon extends Component {
 
 printPokemon(){
 
+    const pokemonPrinted = `<div class="pokemon-title">
+    <p class="pokemon__name">${this.name}</p></div>
+                  <img
+                src="${this.img}"
+                alt="${this.name}"
+                class="pokemon__img"
+              />
+              <p class="pokemon__number">#${this.id}</p>
+              
+              <ul class="pokemon__types">
+              ${
+                this.types.length < 2
+                  ? `<li class="pokemon__type">${this.types[0]}</li>`
+                  : `<li class="pokemon__type">${this.types[0]}</li>
+                <li class="pokemon__type">${this.types[1]}</li>`
+              }
+              </ul>
+              
+    `;
+
+    document.querySelector("main__pokemon-list").innerHTML = pokemonPrinted;
+}
 }

@@ -1,5 +1,6 @@
 import Component from "./Component.js";
-
+import PokemonServices from "./PokemonServices.js";
+import Pokemon from "./Pokemon.js";
 class Page extends Component {
   urlPokeAPI;
   pokemonList;
