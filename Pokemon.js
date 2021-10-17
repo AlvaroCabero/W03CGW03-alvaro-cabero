@@ -8,27 +8,25 @@ class Pokemon extends Component {
   img;
   number;
   types;
-  constructor(parentElement) {
+  constructor(parentElement, urlPokemon) {
     super(parentElement, "main__pokemon-list", "li");
-    this.urlPokemon = "https://pokeapi.co/api/v2/pokemon/ditto";
-    
+    this.urlPokemon = urlPokemon;
+
     this.printPokemon();
   }
 
-  (async () => {
-    const pokemonService = new PokemonServices(this.urlPokemon);
-    const pokemonData = await pokemonService.getPokemon();
-    this.pokemon = pokemonData;
-    this.name = pokemonData.name;
-    this.img = pokemonData.sprites.other['official-artwork'].front_default;
-    this.id = pokemonData.id;
-  pokemonData.types.forEach((type) =>
-        this.types.push(type.type.name)
-      );
+  printPokemon() {
+    (async () => {
+      const pokemonService = new PokemonServices(this.urlPokemon);
+      const pokemonData = await pokemonService.getPokemon();
+      console.log(pokemonData);
+      this.pokemon = pokemonData;
+      this.name = pokemonData.name;
+      this.img = pokemonData.sprites.other["official-artwork"].front_default;
+      this.id = pokemonData.id;
+
+      //pokemonData.types.forEach((type) => this.types.push(type.type.name));
     })();
-
-printPokemon(){
-
     const pokemonPrinted = `<div class="pokemon-title">
     <p class="pokemon__name">${this.name}</p></div>
                   <img
@@ -37,18 +35,20 @@ printPokemon(){
                 class="pokemon__img"
               />
               <p class="pokemon__number">#${this.id}</p>
-              
-              <ul class="pokemon__types">
-              ${
-                this.types.length < 2
-                  ? `<li class="pokemon__type">${this.types[0]}</li>`
-                  : `<li class="pokemon__type">${this.types[0]}</li>
-                <li class="pokemon__type">${this.types[1]}</li>`
-              }
               </ul>
               
     `;
 
-    document.querySelector("main__pokemon-list").innerHTML = pokemonPrinted;
+    /* <ul class="pokemon__types">
+              ${
+              //   this.types.length < 2
+              //     ? `<li class="pokemon__type">${this.types[0]}</li>`
+              //     : `<li class="pokemon__type">${this.types[0]}</li>
+              //   <li class="pokemon__type">${this.types[1]}</li>`
+              // }*/
+
+    document.querySelector(".main").innerHTML = pokemonPrinted;
+  }
 }
-}
+
+export default Pokemon;
