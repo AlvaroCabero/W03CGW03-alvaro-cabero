@@ -2,7 +2,7 @@ import Component from "./Component.js";
 import Page from "./Page.js";
 import PokemonServices from "./PokemonServices.js";
 class Pokemon extends Component {
-  urlPokeAPI;
+  urlPokemon;
   pokemon;
   name;
   img;
@@ -10,13 +10,13 @@ class Pokemon extends Component {
   types;
   constructor(parentElement) {
     super(parentElement, "main__pokemon-list", "li");
-    this.urlPokeAPI = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10";
+    this.urlPokemon = "https://pokeapi.co/api/v2/pokemon/ditto";
     this.getPokemons();
     this.printPokemon();
   }
 
   (async getPokemons() {
-    const pokemonService = new PokemonServices(this.urlPokeAPI);
+    const pokemonService = new PokemonServices(this.urlPokemon);
     const pokemonData = await pokemonService.getPokemon();
     this.pokemon = pokemonData;
     this.name = pokemonData.name;
@@ -27,4 +27,6 @@ class Pokemon extends Component {
       );
     })();
 
-printpokemon
+printPokemon(){
+
+}
