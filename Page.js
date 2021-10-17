@@ -9,23 +9,22 @@ class Page extends Component {
   }
 
   addHeader() {
-    header = `<div class="test">Holaaaaaaaa</div>
+    const header = `<div class="test">Holaaaaaaaa</div>
 <div class="test">Holaaaaaaaa</div>
 <div class="test">Holaaaaaaaa</div>`;
     document.querySelector("header").innerHTML = header;
   }
   addSection() {
-    section = `<div class="test">Heyeeeeeeeeeeeee</div>
+    const section = `<div class="test">Heyeeeeeeeeeeeee</div>
 <div class="test">Heyeeeeeeeeeeeee</div>
 <div class="test">Heyeeeeeeeeeeeee</div>`;
-    document.querySelector("header").innerHTML = header;
+    document.querySelector("main").innerHTML = section;
   }
   addFooter() {
-    footer = `<div class="test">Adiossssssss</div>
+    const footer = `<div class="test">Adiossssssss</div>
 <div class="test">Adiossssssss</div>
 <div class="test">Adiossssssss</div>`;
     document.querySelector("footer").innerHTML = footer;
-  }
   }
 }
 
