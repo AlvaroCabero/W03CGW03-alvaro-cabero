@@ -9,9 +9,10 @@ class Page extends Component {
   }
 
   addHeader() {
-    const header = `<div class="test">Holaaaaaaaa</div>
-<div class="test">Holaaaaaaaa</div>
-<div class="test">Holaaaaaaaa</div>`;
+    const header = `<div class="title">
+    <h1 class="main-title">POKEMON</h1>
+    <img src="https://www.clipartmax.com/png/middle/71-710762_gengar-decal-by-mute-owl-pokemon-silhouette.png" alt="pokemon silhouette" className="title__img" />
+    </div>`;
     document.querySelector("header").innerHTML = header;
   }
   addSection() {
