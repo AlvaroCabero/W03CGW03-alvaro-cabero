@@ -1,6 +1,6 @@
 import Component from "./Component.js";
 import Page from "./Page.js";
-
+import PokemonServices from "./PokemonServices.js";
 class Pokemon extends Component {
   urlPokeAPI;
   pokemon;
@@ -10,8 +10,9 @@ class Pokemon extends Component {
   types;
   constructor(parentElement) {
     super(parentElement, "main__pokemon-list", "li");
-    this.urlAPI = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10";
+    this.urlPokeAPI = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10";
     this.getPokemons();
+    this.printPokemon();
   }
 
   (async getPokemons() {
@@ -21,8 +22,9 @@ class Pokemon extends Component {
     this.name = pokemonData.name;
     this.img = pokemonData.sprites.other['official-artwork'].front_default;
     this.id = pokemonData.id;
-     const types = pokemonData.types;
-      types.forEach((type) =>
+  pokemonData.types.forEach((type) =>
         this.types.push(type.type.name)
       );
     })();
+
+printpokemon
