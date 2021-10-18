@@ -49,7 +49,8 @@ class Pokemon extends Component {
               //   <li class="pokemon__type">${this.types[1]}</li>`
               // }*/
 
-    document.querySelector(".main__pokemon-element").innerHTML = pokemonPrinted;
+    document.querySelector(".main__pokemon-element").innerHTML +=
+      pokemonPrinted;
   }
 }
 
