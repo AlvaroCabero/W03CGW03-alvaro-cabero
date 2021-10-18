@@ -8,25 +8,27 @@ class Pokemon extends Component {
   img;
   number;
   types;
-  constructor(parentElement, urlPokemon) {
-    super(parentElement, "main__pokemon-list", "li");
+  constructor(parentNode, urlPokemon) {
+    super(parentNode, "main__pokemon-element", "li");
+    this.parentNode;
     this.urlPokemon = urlPokemon;
+    console.log(parentNode + urlPokemon);
 
-    this.printPokemon();
-  }
-
-  printPokemon() {
     (async () => {
       const pokemonService = new PokemonServices(this.urlPokemon);
       const pokemonData = await pokemonService.getPokemon();
-      console.log(pokemonData);
+      console.log("hola:" + pokemonData);
       this.pokemon = pokemonData;
       this.name = pokemonData.name;
       this.img = pokemonData.sprites.other["official-artwork"].front_default;
       this.id = pokemonData.id;
-
+      this.printPokemon();
       //pokemonData.types.forEach((type) => this.types.push(type.type.name));
     })();
+  }
+
+  printPokemon() {
+    console.log("hey" + this.urlPokemon);
     const pokemonPrinted = `<div class="pokemon-title">
     <p class="pokemon__name">${this.name}</p></div>
                   <img
@@ -47,7 +49,7 @@ class Pokemon extends Component {
               //   <li class="pokemon__type">${this.types[1]}</li>`
               // }*/
 
-    document.querySelector(".main").innerHTML = pokemonPrinted;
+    document.querySelector(".main__pokemon-element").innerHTML = pokemonPrinted;
   }
 }
 

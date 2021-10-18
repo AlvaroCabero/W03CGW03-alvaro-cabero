@@ -1,4 +1,4 @@
 import Page from "./Page.js";
 
-const origin = document.querySelector("body");
+const origin = document.querySelector(".main");
 const newPage = new Page(origin);
